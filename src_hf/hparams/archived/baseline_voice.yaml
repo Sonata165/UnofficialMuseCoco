@@ -1,0 +1,22 @@
+# For training
+n_epoch: 10 # 20 # 50
+result_root: /data2/longshen/Datasets/slakh2100_flac_redux/musecoco_results_hf
+out_dir: baseline_voice
+with_hist: True
+reorder_tgt: False
+voice_control: True
+
+# For testing
+reinst_exp_name: 'eg_v_ep_ap'
+replace_inst: ['i-26', 'i-40', 'i-2', 'i-0', 'i-33', 'i-128']
+hist_autoregressive: True
+
+pt_ckpt: '/data2/longshen/Checkpoints/musecoco/transformers/200m/model'
+tokenizer_fp: '/data2/longshen/Checkpoints/musecoco/transformers/200m/tokenizer_ft'
+data_root: '/data2/longshen/Datasets/slakh2100_flac_redux/musecoco_data/slakh_segmented_2bar_sss'
+bs: 36
+bs_test: 1
+lr: 0.0001
+warmup_steps: 0
+weight_decay: 0.01
+# fast_dev_run: False

@@ -1,0 +1,36 @@
+# Hist: range + position + drum_pos
+
+n_epoch: 10 # 20 # 50
+result_root: /data2/longshen/musecoco_data/results
+out_dir: fl_dbaug_rphist_drumpos
+with_hist: range_pos_with_drum_pos  # False | full | drum | drum_and_range | drum_range_pos | 
+                      # range_pos_with_drum_pos | range_pos_with_drum_range | range_pos_with_drum_range_pos
+reorder_tgt: False
+do_augment: True
+aug_hist: False
+voice_control: True
+texture_control: True
+
+# Train and test
+flatten_content: True
+multi_task: True # For both train and test
+
+# Test and Reinst
+test_task: recon # recon | simp | elab
+infer_exp_name: recon
+
+# Reinst
+midi_fp: /data2/longshen/musecoco_data/full_song/caihong/detokenized.mid
+reinst_exp_name: ap_ep_eg_eb_dr_recon
+replace_inst: ['i-0', 'txt-0', 'i-2', 'txt-2', 'i-26', 'txt-1', 'txt-2', 'i-33', 'txt-0', 'i-128'] # inst list | False
+hist_autoregressive: True
+
+pt_ckpt: /data2/longshen/musecoco_data/pretrained_models/200m/model
+tokenizer_fp: /data2/longshen/musecoco_data/pretrained_models/200m/tokenizer_ft
+data_root: /data2/longshen/musecoco_data/datasets
+bs: 36
+bs_test: 1
+lr: 0.0001
+warmup_steps: 0
+weight_decay: 0.01
+

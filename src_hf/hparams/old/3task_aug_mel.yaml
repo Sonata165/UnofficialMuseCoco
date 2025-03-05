@@ -1,0 +1,28 @@
+n_epoch: 10 # 20 # 50
+result_root: /data2/longshen/musecoco_data/results
+out_dir: 3task_aug_keep_mel
+with_hist: True
+reorder_tgt: False
+do_augment: True
+
+# Train and test
+multi_task: True # For both train and test
+
+# Test and Reinst
+test_task: elab # recon | simp | elab
+
+# Reinst
+midi_fp: /data2/longshen/musecoco_data/full_song/caihong/detokenized.mid
+reinst_exp_name: ap_elab
+replace_inst: ['i-0'] # inst list | False
+hist_autoregressive: True
+
+pt_ckpt: /data2/longshen/musecoco_data/pretrained_models/200m/model
+tokenizer_fp: /data2/longshen/musecoco_data/pretrained_models/200m/tokenizer_ft
+data_root: /data2/longshen/musecoco_data/datasets
+bs: 36
+bs_test: 1
+lr: 0.0001
+warmup_steps: 0
+weight_decay: 0.01
+# fast_dev_run: False

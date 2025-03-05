@@ -1,0 +1,30 @@
+n_epoch: 10 # 20 # 50
+result_root: /data2/longshen/musecoco_data/results
+out_dir: nohist_debug_baseline_aug # baseline_aug
+with_hist: drum_range_pos # False | full | drum | drum_and_range | drum_range_pos
+reorder_tgt: False
+do_augment: True
+multi_task: False # For both train and test
+fast_dev_run: 5
+num_workers: 0
+voice_control: False
+texture_control: False
+flatten_content: True
+
+test_task: recon # recon | simp | elab
+reinst_exp_name: ap_recon
+replace_inst: ['i-0']
+hist_autoregressive: True
+
+# Reinst
+midi_fp: /data2/longshen/musecoco_data/full_song/caihong/detokenized.mid
+
+pt_ckpt: '/data2/longshen/musecoco_data/pretrained_models/200m/model'
+tokenizer_fp: '/data2/longshen/musecoco_data/pretrained_models/200m/tokenizer_ft'
+data_root: '/data2/longshen/musecoco_data/datasets'
+bs: 36
+bs_test: 1
+lr: 0.0001
+warmup_steps: 0
+weight_decay: 0.01
+# fast_dev_run: False

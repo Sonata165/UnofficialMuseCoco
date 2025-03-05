@@ -1,0 +1,53 @@
+# Voice, Texture, Augment, 3-task
+task: arrange # arrange | recon 
+
+n_epoch: 10 # 20 # 50
+result_root: /data1/longshen/musecoco_data/results
+out_dir: ar_hist
+with_hist: full # False | full | drum | drum_and_range | drum_range_pos
+reorder_tgt: False
+voice_control: False
+texture_control: False
+fast_dev_run: False
+
+# Augmentation related
+do_augment: True
+aug_hist: False
+remove_drum: True
+inst_infill: True
+inst_del: True
+
+# Validation
+n_gen_val_per_batch: 2
+
+# Train and test
+flatten_content: False
+multi_task: False # For both train and test
+
+# Infer
+infer_exp_name: rand_inst # recon | rand_inst
+infer_with: mini_valid
+infer_inp_fn: ${infer_with}.txt
+infer_out_fn: out_${infer_with}_${infer_exp_name}.txt
+eval_out_fn: eval_${infer_with}_${infer_exp_name}.txt
+
+# Test and Reinst
+test_task: recon # recon | simp | elab
+
+# Reinst
+midi_fp: /data1/longshen/musecoco_data/full_song/caihong/detokenized.mid
+reinst_exp_name: many_inst
+# replace_inst: ['i-0', 'txt-3'] # inst list | False
+# replace_inst: ['i-40', 'i-41', 'i-42']
+replace_inst: ['i-0', 'i-2', 'i-26', 'i-24', 'i-33', 'i-128']
+hist_autoregressive: True
+
+pt_ckpt: /data1/longshen/musecoco_data/pretrained_models/200m/model
+tokenizer_fp: /data1/longshen/musecoco_data/pretrained_models/200m/tokenizer_ft
+data_root: /data1/longshen/musecoco_data/datasets
+bs: 36
+bs_test: 1
+lr: 0.0001
+warmup_steps: 0
+weight_decay: 0.01
+

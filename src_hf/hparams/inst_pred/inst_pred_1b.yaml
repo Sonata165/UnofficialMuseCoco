@@ -1,0 +1,68 @@
+# Voice, Texture, Augment, 3-task
+task: recon # arrange | recon 
+
+# Dataset
+data_root: /data1/longshen/musecoco_data/datasets
+dataset_class: InstPredDataset
+remove_drum: True
+train_with: train
+
+# Model
+pt_ckpt: /data1/longshen/musecoco_data/pretrained_models/1b/model
+tokenizer_fp: /data1/longshen/musecoco_data/pretrained_models/20m/tokenizer_ft
+freeze_musecoco: True
+
+# Trainer
+n_epoch: 10 # 20 # 50
+result_root: /data1/longshen/musecoco_data/results/inst_pred
+out_dir: 1b_lr1e-3
+lit_model_class: LitMuseCocoInstPred
+val_check_interval: 0.2
+bs: 36
+bs_test: 1
+lr: 0.001
+lr_musecoco: 0.001
+warmup_steps: 0
+weight_decay: 0.01
+
+# Augmentation related
+do_augment: True # deprecated, not used
+aug_inst_slight: True
+aug_drum: True
+aug_bass: True
+aug_hist: True
+aug_inst: True
+aug_content: True
+aug_denoise: True
+
+# Validation
+n_gen_val_per_batch: 2
+
+# Train and test
+flatten_content: True
+multi_task: True # For both train and test
+
+# Infer
+infer_exp_name: recon # recon | rand_inst
+infer_with: mini_valid
+infer_inp_fn: ${infer_with}.txt
+infer_out_fn: out_${infer_with}_${infer_exp_name}.txt
+eval_out_fn: eval_${infer_with}_${infer_exp_name}.txt
+
+# Test and Reinst
+test_task: recon # recon | simp | elab
+
+# Reinst
+midi_fp: /data1/longshen/musecoco_data/full_song/caihong/detokenized.mid
+reinst_exp_name: caihong_jazz_kp
+# replace_inst: ['i-0', 'txt-3'] # inst list | False
+# replace_inst: ['i-40', 'txt-1', 'i-41', 'txt-1', 'i-42', 'txt-1']
+# replace_inst: ['i-0', 'txt-0', 'i-2', 'txt-2', 'i-26', 'txt-1', 'i-24', 'txt-3', 'i-33', 'txt-0', 'i-128']
+# replace_inst: ['i-0', 'i-2', 'i-26', 'i-24', 'i-33']
+replace_inst: ['i-64', 'i-40', 'i-61', 'i-26', 'i-0', 'i-44', 'i-33'] # jazz band
+# replace_inst: ['i-40', 'i-41', 'i-42'] # String trio
+# replace_inst: ['i-0']
+hist_autoregressive: True
+
+
+
